@@ -5,6 +5,7 @@ import WebCritic from "../assets/webcritic.png";
 import BolivarYa from "../assets/bolivarya.png";
 import AiCvClassifier from "../assets/aicvclassifier.png";
 import DealOrNoDeal from "../assets/dealornodeal.png";
+import Ztocky from "../assets/ztocky.png";
 type Project = {
   id: string;
   title: string;
@@ -19,6 +20,30 @@ type Project = {
 const projects: Project[] = [
   {
     id: "1",
+    title: "Ztocky",
+    description:
+      "Sistema inteligente de gestión de stock y compras. Analiza ventas, proyecta agotamientos, genera alertas automáticas y sugiere reórdenes.",
+    image: Ztocky,
+    tags: [
+      "nextjs",
+      "react",
+      "prisma",
+      "postgresql",
+      "tailwind",
+      "fullstack",
+      "zustand",
+      "stock",
+      "roles",
+      "ai",
+      "groq",
+      "ui",
+    ],
+    category: "fullstack",
+    githubUrl: "https://github.com/NahueAdema/Ztocky",
+    demoUrl: "https://ztocky.vercel.app/",
+  },
+  {
+    id: "2",
     title: "Web critic AI",
     description:
       "Web critic AI es un proyecto que utiliza el modelo Groq para generar críticas sobre la ui de un sitio web.",
@@ -26,10 +51,10 @@ const projects: Project[] = [
     tags: ["nextjs", "web", "ui", "critic", "ai", "groq"],
     category: "frontend",
     githubUrl: "https://github.com/NahueAdema/AI-Website-Critic",
-    demoUrl: "https://ai-website-critic.vercel.app/",
+    demoUrl: "https://ai-website-critic.netlify.app/",
   },
   {
-    id: "2",
+    id: "3",
     title: "BolivarYa",
     description:
       "Un proyecto grupal el cual es una plataforma de delivery que conecta a usuarios con restaurantes, supermercados, farmacias y tiendas, permitiéndoles pedir productos desde la web o el celular y recibirlos a domicilio de forma rápida y sencilla.",
@@ -39,7 +64,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/fran5570/Bolivar-Ya",
   },
   {
-    id: "3",
+    id: "4",
     title: "AiCvClassifier",
     description:
       "Un proyecto el cual utiliza inteligencia artificial para clasificar y analizar currículums vitae, ayudando a los reclutadores a identificar rápidamente a los candidatos más adecuados para sus vacantes. Esta inspirado en devs y desarrolladores.",
@@ -57,7 +82,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/NahueAdema/AiCvClassifier",
   },
   {
-    id: "4",
+    id: "5",
     title: "AiCvClassifier",
     description:
       "El frontend sencillo para utilizar el proyecto el cual utiliza inteligencia artificial para clasificar y analizar currículums vitae, ayudando a los reclutadores a identificar rápidamente a los candidatos más adecuados para sus vacantes. Esta inspirado en devs y desarrolladores.",
@@ -75,7 +100,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/NahueAdema/AiCvClassifierFE",
   },
   {
-    id: "5",
+    id: "6",
     title: "Deal or No Deal",
     description:
       "Un proyecto el cual es una aplicación web que simula el popular juego de televisión 'Deal or No Deal', donde los jugadores eligen entre varias cajas con premios ocultos y negocian con un banquero para maximizar sus ganancias.",
