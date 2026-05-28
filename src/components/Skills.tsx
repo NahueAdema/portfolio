@@ -5,7 +5,6 @@ import HTMLIcon from "../assets/icons/HTML.png";
 import CSSIcon from "../assets/icons/CSS.png";
 import JsIcon from "../assets/icons/Js.webp";
 import TsIcon from "../assets/icons/Ts.png";
-import DartIcon from "../assets/icons/dart.png";
 import ReactIcon from "../assets/icons/React.webp";
 import NextJsIcon from "../assets/icons/NextJs.png";
 import AstroIcon from "../assets/icons/astro.png";
@@ -15,9 +14,6 @@ import NestJsIcon from "../assets/icons/NestJs.png";
 import FlaskIcon from "../assets/icons/Flask.webp";
 import FastApiIcon from "../assets/icons/FastApi.png";
 import ExpressIcon from "../assets/icons/express.webp";
-import FlutterIcon from "../assets/icons/flutter.png";
-import ReactNativeIcon from "../assets/icons/React.webp";
-import ExpoIcon from "../assets/icons/expo.png";
 import PostgreSQLIcon from "../assets/icons/PostgreSQL.png";
 import MongoDBIcon from "../assets/icons/MongoDB.svg";
 import DockerIcon from "../assets/icons/Docker.webp";
@@ -25,23 +21,26 @@ import AWSIcon from "../assets/icons/aws.png";
 import Placeholder from "../assets/placeholder.jpg";
 
 const skills = [
-  { name: "HTML", icon: HTMLIcon, category: "Frontend" },
-  { name: "CSS", icon: CSSIcon, category: "Frontend" },
+  { name: "TypeScript", icon: TsIcon, category: "Principal" },
+  { name: "React", icon: ReactIcon, category: "Principal" },
+  { name: "Next.js", icon: NextJsIcon, category: "Principal" },
+  { name: "Python", icon: PyIcon, category: "Principal" },
+  { name: "FastAPI", icon: FastApiIcon, category: "Principal" },
+  { name: "PostgreSQL", icon: PostgreSQLIcon, category: "Principal" },
+  { name: "Tailwind", icon: TailwindIcon, category: "Principal" },
   { name: "JavaScript", icon: JsIcon, category: "Lenguaje" },
-  { name: "TypeScript", icon: TsIcon, category: "Lenguaje" },
-  { name: "Dart", icon: DartIcon, category: "Lenguaje" },
   { name: "React", icon: ReactIcon, category: "Frontend" },
   { name: "Next.js", icon: NextJsIcon, category: "Frontend" },
   { name: "Astro", icon: AstroIcon, category: "Frontend" },
+  { name: "HTML", icon: HTMLIcon, category: "Frontend" },
+  { name: "CSS", icon: CSSIcon, category: "Frontend" },
   { name: "Tailwind", icon: TailwindIcon, category: "Frontend" },
+  { name: "TypeScript", icon: TsIcon, category: "Lenguaje" },
   { name: "Python", icon: PyIcon, category: "Lenguaje" },
   { name: "NestJS", icon: NestJsIcon, category: "Backend" },
   { name: "Flask", icon: FlaskIcon, category: "Backend" },
   { name: "FastAPI", icon: FastApiIcon, category: "Backend" },
   { name: "Express", icon: ExpressIcon, category: "Backend" },
-  { name: "Flutter", icon: FlutterIcon, category: "Mobile" },
-  { name: "React-Native", icon: ReactNativeIcon, category: "Mobile" },
-  { name: "Expo", icon: ExpoIcon, category: "Mobile" },
   { name: "PostgreSQL", icon: PostgreSQLIcon, category: "Database" },
   { name: "MongoDB", icon: MongoDBIcon, category: "Database" },
   { name: "Docker", icon: DockerIcon, category: "DevOps" },
@@ -49,17 +48,16 @@ const skills = [
 ];
 
 const categories = [
-  "All",
+  "Principal",
   "Lenguaje",
   "Frontend",
   "Backend",
   "Database",
-  "Mobile",
   "DevOps",
 ];
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("Principal");
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -67,8 +65,8 @@ const Skills = () => {
   }, []);
 
   const filteredSkills =
-    activeCategory === "All"
-      ? skills
+    activeCategory === "Principal"
+      ? skills.filter((skill) => skill.category === "Principal")
       : skills.filter((skill) => skill.category === activeCategory);
 
   return (
@@ -81,8 +79,13 @@ const Skills = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center gradient-text">
-            Mis Habilidades
+            Stack y herramientas
           </h2>
+          <p className="text-center text-gray-400 mb-10 max-w-3xl mx-auto">
+            Estas son las tecnologias con las que estoy construyendo proyectos
+            web actualmente, priorizando un stack claro para frontend, backend,
+            datos y despliegue.
+          </p>
 
           <div className="flex justify-center flex-wrap gap-2 mb-8">
             {categories.map((category) => (
@@ -92,7 +95,7 @@ const Skills = () => {
                 className={`px-4 py-2 rounded-full transition-all duration-300 ${
                   activeCategory === category
                     ? "bg-gray-400 text-gray-800 dark:text-white"
-                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                 }`}
               >
                 {category}

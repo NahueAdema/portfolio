@@ -104,8 +104,9 @@ const Contact = () => {
           </h2>
 
           <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
-            ¿Tienes un proyecto interesante o quieres hablar sobre oportunidades
-            de colaboración? Estaré encantado de escucharte. ¡Contáctame!
+            Si tenes una idea, una oportunidad o queres hablar sobre desarrollo
+            web, producto o IA aplicada, escribime. Me interesa construir cosas
+            simples, utiles y bien pensadas.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -123,7 +124,7 @@ const Contact = () => {
                     <div>
                       <h4 className="text-lg font-medium">Email</h4>
                       <a
-                        href="mailto:email@example.com"
+                        href="mailto:ademanahuel@gmail.com"
                         className="text-gray-400 hover:text-primary-400 transition-colors"
                       >
                         ademanahuel@gmail.com
@@ -150,6 +151,7 @@ const Contact = () => {
                     <a
                       href="https://github.com/NahueAdema"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="p-3 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
                     >
                       <svg
@@ -168,6 +170,7 @@ const Contact = () => {
                     <a
                       href="https://www.linkedin.com/in/nahuel-adema-6627a3304/"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="p-3 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
                     >
                       <svg
@@ -190,7 +193,7 @@ const Contact = () => {
 
             <div className="lg:col-span-7 fade-in">
               <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-6">Envía un mensaje</h3>
+                <h3 className="text-2xl font-bold mb-6">Envia un mensaje</h3>
 
                 {formStatus.isSubmitted && !formStatus.isError ? (
                   <div className="flex items-center p-4 bg-green-900/30 text-green-400 rounded-xl mb-6">

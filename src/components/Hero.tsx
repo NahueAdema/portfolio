@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import * as THREE from "three";
-import { ArrowDown, Code, Server, Database } from "lucide-react";
+import { ArrowDown, BrainCircuit, Code, Database, Server } from "lucide-react";
 
 const Hero = () => {
   const canvasRef = useRef(null);
@@ -113,7 +113,9 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
           >
-            <span className="gradient-text">Desarrollador Full Stack</span>
+            <span className="gradient-text">
+              Full Stack Developer creando productos web con IA
+            </span>
           </motion.h1>
 
           <motion.p
@@ -122,8 +124,9 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto"
           >
-            Transformando ideas en experiencias digitales excepcionales con
-            código limpio y diseño centrado en el usuario.
+            Soy Nahuel Adema. Construyo aplicaciones completas con React,
+            Next.js, Python, APIs modernas y bases de datos, cuidando tanto la
+            experiencia del usuario como la lógica que sostiene el producto.
           </motion.p>
 
           <motion.div
@@ -136,7 +139,7 @@ const Hero = () => {
               href="#contact"
               className="px-8 py-3 rounded-full bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
             >
-              Contáctame
+              Hablemos
             </a>
             <a
               href="#projects"
@@ -150,7 +153,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex justify-center gap-12 mt-16"
+            className="flex flex-wrap justify-center gap-6 sm:gap-10 mt-16"
           >
             <motion.div
               className="flex flex-col items-center"
@@ -159,7 +162,7 @@ const Hero = () => {
               <div className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-3">
                 <Code className="w-8 h-8 text-primary-400" />
               </div>
-              <span className="text-sm text-gray-400">Frontend</span>
+              <span className="text-sm text-gray-400">Interfaces claras</span>
             </motion.div>
 
             <motion.div
@@ -169,7 +172,7 @@ const Hero = () => {
               <div className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-3">
                 <Server className="w-8 h-8 text-secondary-400" />
               </div>
-              <span className="text-sm text-gray-400">Backend</span>
+              <span className="text-sm text-gray-400">APIs solidas</span>
             </motion.div>
 
             <motion.div
@@ -179,7 +182,17 @@ const Hero = () => {
               <div className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-3">
                 <Database className="w-8 h-8 text-green-400" />
               </div>
-              <span className="text-sm text-gray-400">Bases de datos</span>
+              <span className="text-sm text-gray-400">Datos utiles</span>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col items-center"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-3">
+                <BrainCircuit className="w-8 h-8 text-secondary-400" />
+              </div>
+              <span className="text-sm text-gray-400">IA aplicada</span>
             </motion.div>
           </motion.div>
         </div>
@@ -204,7 +217,7 @@ const Hero = () => {
           href="#about"
           className="flex flex-col items-center text-white/60 hover:text-white transition-colors"
         >
-          <span className="text-sm mb-2">Descubre más</span>
+          <span className="text-sm mb-2">Conoce mi trabajo</span>
           <ArrowDown className="w-5 h-5" />
         </a>
       </motion.div>

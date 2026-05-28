@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Coffee, Github, Linkedin, Mail } from "lucide-react";
+import { BrainCircuit, FileText, Github, Linkedin, Mail } from "lucide-react";
 import Profile from "../assets/profile.png";
 import cv from "../assets/cv.pdf";
 const About: React.FC = () => {
@@ -40,7 +40,7 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-dark p-4 rounded-full shadow-lg">
-                  <Coffee className="w-8 h-8 text-primary-400" />
+                  <BrainCircuit className="w-8 h-8 text-primary-400" />
                 </div>
               </div>
 
@@ -84,16 +84,17 @@ const About: React.FC = () => {
               </h3>
 
               <p className="text-gray-300 mb-4">
-                Soy un desarrollador Full Stack apasionado por crear soluciones
-                web innovadoras y efectivas. Me destaco por ser puntual, atento,
-                proactivo y comprometido con el aprendizaje continuo.
+                Soy desarrollador Full Stack de Buenos Aires, Argentina. Me
+                gusta construir productos completos: desde interfaces prolijas y
+                rapidas hasta APIs, bases de datos y flujos con inteligencia
+                artificial que resuelvan problemas concretos.
               </p>
 
               <p className="text-gray-300 mb-6">
-                Mi objetivo es combinar habilidades técnicas sólidas con un
-                fuerte enfoque en la experiencia del usuario para entregar
-                productos digitales que no solo funcionen perfectamente, sino
-                que también sean intuitivos y agradables de usar.
+                Trabajo principalmente con React, Next.js, TypeScript, Python,
+                FastAPI, PostgreSQL y Tailwind. Me interesa que cada proyecto
+                tenga una idea clara, una buena experiencia de uso y una base
+                tecnica mantenible.
               </p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
@@ -111,9 +112,9 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm text-gray-400 mb-1">
-                    Disponibilidad:
+                    Enfoque:
                   </h4>
-                  <p className="font-medium">Freelance / Full-time</p>
+                  <p className="font-medium">Web apps / IA / APIs</p>
                 </div>
               </div>
 

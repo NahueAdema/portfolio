@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, Code, Server, Database } from "lucide-react";
+import {
+  ArrowUpRight,
+  Database,
+  ExternalLink,
+  Github,
+  Code,
+  Server,
+  Sparkles,
+} from "lucide-react";
 import WebCritic from "../assets/webcritic.png";
 import BolivarYa from "../assets/bolivarya.png";
 import AiCvClassifier from "../assets/aicvclassifier.png";
@@ -13,6 +21,8 @@ type Project = {
   image: string;
   tags: string[];
   category: string;
+  role: string;
+  highlight: string;
   githubUrl: string;
   demoUrl?: string;
 };
@@ -22,7 +32,7 @@ const projects: Project[] = [
     id: "1",
     title: "Ztocky",
     description:
-      "Sistema inteligente de gestión de stock y compras. Analiza ventas, proyecta agotamientos, genera alertas automáticas y sugiere reórdenes.",
+      "Aplicacion full stack para ayudar a comercios a controlar stock, anticipar faltantes y tomar mejores decisiones de compra con alertas, proyecciones y sugerencias asistidas por IA.",
     image: Ztocky,
     tags: [
       "nextjs",
@@ -39,6 +49,8 @@ const projects: Project[] = [
       "ui",
     ],
     category: "fullstack",
+    role: "Full Stack",
+    highlight: "Gestion de stock, roles, predicciones y reordenes inteligentes.",
     githubUrl: "https://github.com/NahueAdema/Ztocky",
     demoUrl: "https://ztocky.vercel.app/",
   },
@@ -46,10 +58,12 @@ const projects: Project[] = [
     id: "2",
     title: "Web critic AI",
     description:
-      "Web critic AI es un proyecto que utiliza el modelo Groq para generar críticas sobre la ui de un sitio web.",
+      "Herramienta que analiza sitios web y genera feedback de UI mediante IA, pensada para detectar oportunidades de mejora visual, claridad y experiencia de usuario.",
     image: WebCritic,
     tags: ["nextjs", "web", "ui", "critic", "ai", "groq"],
     category: "frontend",
+    role: "Frontend + IA",
+    highlight: "Criticas accionables sobre interfaces usando modelos de Groq.",
     githubUrl: "https://github.com/NahueAdema/AI-Website-Critic",
     demoUrl: "https://ai-website-critic.netlify.app/",
   },
@@ -57,17 +71,19 @@ const projects: Project[] = [
     id: "3",
     title: "BolivarYa",
     description:
-      "Un proyecto grupal el cual es una plataforma de delivery que conecta a usuarios con restaurantes, supermercados, farmacias y tiendas, permitiéndoles pedir productos desde la web o el celular y recibirlos a domicilio de forma rápida y sencilla.",
+      "Plataforma grupal de delivery que conecta usuarios con restaurantes, supermercados, farmacias y tiendas, con flujo de pedidos, distintos tipos de comercios y experiencia pensada para uso cotidiano.",
     image: BolivarYa,
     tags: ["laravel", "react", "web", "ui", "delivery", "ecommerce", "roles"],
     category: "fullstack",
+    role: "Proyecto grupal",
+    highlight: "Marketplace de delivery con roles, comercios y pedidos.",
     githubUrl: "https://github.com/fran5570/Bolivar-Ya",
   },
   {
     id: "4",
-    title: "AiCvClassifier",
+    title: "Ai CV Classifier API",
     description:
-      "Un proyecto el cual utiliza inteligencia artificial para clasificar y analizar currículums vitae, ayudando a los reclutadores a identificar rápidamente a los candidatos más adecuados para sus vacantes. Esta inspirado en devs y desarrolladores.",
+      "Backend para clasificar y analizar curriculums con inteligencia artificial, orientado a filtrar perfiles tecnicos y ayudar a reclutadores a identificar candidatos con mayor ajuste.",
     image: AiCvClassifier,
     tags: [
       "python",
@@ -79,13 +95,15 @@ const projects: Project[] = [
       "cvs",
     ],
     category: "backend",
+    role: "Backend + IA",
+    highlight: "Analisis de CVs, clasificacion y API para consumo externo.",
     githubUrl: "https://github.com/NahueAdema/AiCvClassifier",
   },
   {
     id: "5",
-    title: "AiCvClassifier",
+    title: "Ai CV Classifier UI",
     description:
-      "El frontend sencillo para utilizar el proyecto el cual utiliza inteligencia artificial para clasificar y analizar currículums vitae, ayudando a los reclutadores a identificar rápidamente a los candidatos más adecuados para sus vacantes. Esta inspirado en devs y desarrolladores.",
+      "Interfaz para utilizar el clasificador de CVs de forma simple: cargar informacion, revisar resultados y conectar una experiencia visual con el motor de analisis del backend.",
     image: AiCvClassifier,
     tags: [
       "python",
@@ -97,13 +115,15 @@ const projects: Project[] = [
       "cvs",
     ],
     category: "frontend",
+    role: "Frontend",
+    highlight: "Pantalla de uso para consumir y visualizar resultados del modelo.",
     githubUrl: "https://github.com/NahueAdema/AiCvClassifierFE",
   },
   {
     id: "6",
     title: "Deal or No Deal",
     description:
-      "Un proyecto el cual es una aplicación web que simula el popular juego de televisión 'Deal or No Deal', donde los jugadores eligen entre varias cajas con premios ocultos y negocian con un banquero para maximizar sus ganancias.",
+      "Aplicacion web inspirada en el juego Deal or No Deal, con logica de partidas, seleccion de cajas, premios ocultos y negociacion con el banquero.",
     image: DealOrNoDeal,
     tags: [
       "python",
@@ -115,7 +135,9 @@ const projects: Project[] = [
       "frontend",
     ],
     category: "fullstack",
-    githubUrl: "https://github.com/NahueAdema/AI-Website-Critic",
+    role: "Full Stack",
+    highlight: "Juego web con reglas, estados de partida e interaccion dinamica.",
+    githubUrl: "https://github.com/NahueAdema/Deal-Or-No-Deal",
     demoUrl: "https://deal-or-no-deal2.onrender.com/",
   },
 ];
@@ -133,13 +155,16 @@ const categories: Category[] = [
   { id: "fullstack", name: "Full Stack", icon: Database },
 ];
 
+const featuredProject = projects[0];
+const regularProjects = projects.slice(1);
+
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const filteredProjects =
     activeCategory === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      ? regularProjects
+      : regularProjects.filter((project) => project.category === activeCategory);
 
   return (
     <section
@@ -154,13 +179,94 @@ const Projects = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text">
-            Mis Proyectos
+            Trabajo reciente
           </h2>
 
           <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
-            Explora algunos de mis proyectos más recientes y descubre cómo
-            transformo ideas en soluciones digitales con tecnologías modernas.
+            Productos, herramientas y experimentos donde practico frontend,
+            backend, datos e IA aplicada con una idea clara: que cada proyecto
+            resuelva algo concreto.
           </p>
+
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="mb-16 overflow-hidden rounded-2xl border border-primary-400/20 bg-gray-900/60 shadow-2xl"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <div className="relative lg:col-span-7 min-h-[280px]">
+                <img
+                  src={featuredProject.image}
+                  alt={featuredProject.title}
+                  className="h-full min-h-[280px] w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/80" />
+                <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-sm text-primary-300 backdrop-blur-sm">
+                  <Sparkles className="h-4 w-4" />
+                  Proyecto destacado
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                <span className="mb-4 w-fit rounded-full bg-primary-900/40 px-3 py-1 text-xs font-medium text-primary-300">
+                  {featuredProject.role}
+                </span>
+                <h3 className="text-3xl font-bold mb-4">
+                  {featuredProject.title}
+                </h3>
+                <p className="text-gray-300 mb-5 leading-relaxed">
+                  {featuredProject.description}
+                </p>
+                <p className="text-sm text-gray-400 mb-6">
+                  {featuredProject.highlight}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                  <div className="rounded-xl bg-black/30 p-4">
+                    <p className="text-xs text-gray-500 mb-1">Problema</p>
+                    <p className="text-sm text-gray-200">
+                      Stock y compras sin anticipacion.
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-black/30 p-4">
+                    <p className="text-xs text-gray-500 mb-1">Solucion</p>
+                    <p className="text-sm text-gray-200">
+                      Alertas, roles y sugerencias con IA.
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-black/30 p-4">
+                    <p className="text-xs text-gray-500 mb-1">Stack</p>
+                    <p className="text-sm text-gray-200">
+                      Next.js, Prisma, PostgreSQL.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={featuredProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full bg-primary-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+                  >
+                    Ver demo
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </a>
+                  <a
+                    href={featuredProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  >
+                    Ver codigo
+                    <Github className="ml-2 h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.article>
 
           <div className="flex justify-center mb-12">
             <div className="inline-flex rounded-full bg-gray-800/50 p-1">
@@ -239,8 +345,19 @@ const Projects = () => {
                   </div>
 
                   <div className="p-6">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <span className="px-3 py-1 bg-primary-900/40 text-primary-300 rounded-full text-xs font-medium">
+                        {project.role}
+                      </span>
+                      <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">
+                        {project.category}
+                      </span>
+                    </div>
                     <p className="text-gray-400 text-sm mb-6 line-clamp-3">
                       {project.description}
+                    </p>
+                    <p className="text-gray-300 text-sm mb-6">
+                      {project.highlight}
                     </p>
 
                     <div className="flex justify-between items-center">
@@ -249,18 +366,22 @@ const Projects = () => {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors text-sm"
                         >
-                          <Github className="w-5 h-5 text-white" />
+                          <Github className="w-4 h-4 text-white" />
+                          Codigo
                         </a>
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
-                        >
-                          <ExternalLink className="w-5 h-5 text-white" />
-                        </a>
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-primary-900/50 hover:bg-primary-800 rounded-full transition-colors text-sm text-primary-100"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            Demo
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>

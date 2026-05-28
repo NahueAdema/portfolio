@@ -14,11 +14,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
             <a href="/portfolio/" className="text-3xl font-bold gradient-text">
-              Nahu<span className="text-white">Portfolio</span>
+              Nahuel<span className="text-white"> Adema</span>
             </a>
             <p className="text-gray-400 mt-2 max-w-md">
-              Transformando ideas en experiencias digitales excepcionales con
-              código limpio y diseño centrado en el usuario.
+              Desarrollo productos web completos con foco en interfaces claras,
+              APIs solidas, datos utiles e IA aplicada.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
 
             <p className="text-gray-500 text-sm">
-              &copy; {currentYear} Mi Portfolio. Todos los derechos reservados.
+              &copy; {currentYear} Nahuel Adema. Todos los derechos reservados.
             </p>
           </div>
         </div>
@@ -81,10 +81,10 @@ const Footer = () => {
               Proyectos
             </a>
             <a
-              href="#experience"
+              href="#focus"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              Experiencia
+              Foco
             </a>
             <a
               href="#contact"
