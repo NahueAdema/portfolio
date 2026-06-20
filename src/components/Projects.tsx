@@ -160,6 +160,53 @@ const regularProjects = projects.slice(1);
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  const [expandedTagsIds, setExpandedTagsIds] = useState<Set<string>>(new Set());
+
+  const toggleExpand = (id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const toggleExpandTags = (id: string) => {
+    setExpandedTagsIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const tagColors: Record<string, string> = {
+    react: "bg-sky-500/20 text-sky-300",
+    nextjs: "bg-white/10 text-white",
+    laravel: "bg-red-500/20 text-red-300",
+    python: "bg-yellow-500/20 text-yellow-300",
+    flask: "bg-gray-600/30 text-gray-200",
+    fastapi: "bg-emerald-500/20 text-emerald-300",
+    tensorflow: "bg-orange-500/20 text-orange-300",
+    prisma: "bg-indigo-500/20 text-indigo-300",
+    postgresql: "bg-blue-500/20 text-blue-300",
+    tailwind: "bg-cyan-500/20 text-cyan-300",
+    zustand: "bg-amber-500/20 text-amber-300",
+    groq: "bg-green-500/20 text-green-300",
+    ai: "bg-violet-500/20 text-violet-300",
+  };
+
+  const getTagColor = (tag: string) => {
+    const key = tag.toLowerCase().replace(/\s+/g, "");
+    return tagColors[key] || "bg-gray-700/50 text-gray-300";
+  };
 
   const filteredProjects =
     activeCategory === "all"
@@ -326,18 +373,21 @@ const Projects = () => {
                       <div>
                         <h3 className="text-lg font-bold">{project.title}</h3>
                         <div className="flex flex-wrap gap-2 mt-2">
-                          {project.tags.slice(0, 3).map((tag, index) => (
+                          {(expandedTagsIds.has(project.id) ? project.tags : project.tags.slice(0, 3)).map((tag, index) => (
                             <span
                               key={index}
-                              className="px-2 py-1 bg-gray-800/80 rounded-full text-xs text-gray-300"
+                              className={`px-2 py-1 rounded-full text-xs ${getTagColor(tag)}`}
                             >
-                              {tag}
+                              {tag.trim()}
                             </span>
                           ))}
                           {project.tags.length > 3 && (
-                            <span className="px-2 py-1 bg-gray-800/80 rounded-full text-xs text-gray-300">
-                              +{project.tags.length - 3}
-                            </span>
+                            <button
+                              onClick={() => toggleExpandTags(project.id)}
+                              className="px-2 py-1 bg-gray-700/60 hover:bg-gray-600/60 rounded-full text-xs text-gray-300 transition-colors"
+                            >
+                              {expandedTagsIds.has(project.id) ? "Ver menos" : `+${project.tags.length - 3}`}
+                            </button>
                           )}
                         </div>
                       </div>
@@ -353,9 +403,17 @@ const Projects = () => {
                         {project.category}
                       </span>
                     </div>
-                    <p className="text-gray-400 text-sm mb-6 line-clamp-3">
+                    <p className={`text-gray-400 text-sm mb-2 ${expandedIds.has(project.id) ? "" : "line-clamp-3"}`}>
                       {project.description}
                     </p>
+                    {project.description.length > 100 && (
+                      <button
+                        onClick={() => toggleExpand(project.id)}
+                        className="text-primary-400 text-xs hover:underline mb-6 block"
+                      >
+                        {expandedIds.has(project.id) ? "Leer menos" : "Leer más"}
+                      </button>
+                    )}
                     <p className="text-gray-300 text-sm mb-6">
                       {project.highlight}
                     </p>
